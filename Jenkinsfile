@@ -12,5 +12,18 @@ pipeline{
                 }
             }
         }
+        stage('Deploy to Staging Env'){
+            steps{
+                build job: 'Deploy_to_Staging'
+            }
+        }
+        stage('Deploy to PRD Env'){
+            steps{
+                timeout(time:5, unit:'Days'){
+                    input message: 'Approve PROD Deployment?'
+                }
+                build job: 'Deploy_to_PROD'
+            }
+        }
     }
 }
