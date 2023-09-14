@@ -19,7 +19,7 @@ pipeline{
         }
         stage('Deploy to PRD Env'){
             steps{
-                timeout(time:5, unit:'Days'){
+                timeout(time: 5, unit: 'Days'){
                     input message: 'Approve PROD Deployment?'
                 }
                 build job: 'Deploy_to_PROD'
