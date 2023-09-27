@@ -16,12 +16,13 @@ pipeline{
         {
             steps{
                 script {
-                    sh """ssh root@192.168.1.8 << EOF 
-                    docker build . -t tomcatsamplewebapp:${env.BUILD_ID}
+                    sh """ssh root@192.168.1.8 << EOF
+                    docker run hello-world
                     exit
                     EOF"""
                 }
                 //sh "ssh root@192.168.1.8 docker build . -t tomcatsamplewebapp:${env.BUILD_ID}"
+                // docker build . -t tomcatsamplewebapp:${env.BUILD_ID}
             }
         }
     }
