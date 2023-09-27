@@ -17,12 +17,12 @@ pipeline{
             steps{
                 script {
                     sh """ssh root@192.168.1.8 << EOF
-                    docker run hello-world
+                    docker build https://github.com/saba231097/DemoMavenProject.git#main -t tomcatsamplewebapp:${env.BUILD_ID}
                     exit
                     EOF"""
                 }
                 //sh "ssh root@192.168.1.8 docker build . -t tomcatsamplewebapp:${env.BUILD_ID}"
-                // docker build . -t tomcatsamplewebapp:${env.BUILD_ID}
+                // docker build https://github.com/saba231097/DemoMavenProject.git#main -t tomcatsamplewebapp:${env.BUILD_ID}
             }
         }
     }
