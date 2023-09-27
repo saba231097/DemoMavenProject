@@ -15,7 +15,13 @@ pipeline{
         stage('Create Tomcat Docker Image')
         {
             steps{
-                sh "docker build . -t tomcatsamplewebapp:${env.BUILD_ID}"
+                script {
+                    sh """ssh root@192.168.1.8 << EOF 
+                    docker build . -t tomcatsamplewebapp:${env.BUILD_ID}
+                    exit
+                    EOF"""
+                }
+                //sh "ssh root@192.168.1.8 docker build . -t tomcatsamplewebapp:${env.BUILD_ID}"
             }
         }
     }
